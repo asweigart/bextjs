@@ -1,0 +1,16 @@
+html, body {
+    height: 100%;
+}
+
+#textInput, #textOutput {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: monospace;
+    width: 100%;
+}
+
+#textOutput {
+    height: calc(100vh - 40px);
+    vertical-align:top;
+}

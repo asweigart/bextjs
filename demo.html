@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<meta charset="utf-8"/>
+
+<textarea id="textOutput" readonly></textarea><br />
+<input id="textInput" readonly />
+
+<script src="bext.js"></script>
+<link rel="stylesheet" href="bext.css">
+
+
+<script>
+async function main() {
+    print('Hello! What is your name?');
+    var name = await input(); // input() must be called with the await keyword.
+    print('Hi, ' + name + '...');
+    await sleep(1); // sleep() must be called with the await keyword.
+    print('Hello', ''); // if the last argument is a blank string, the newline is suppressed.
+    print('World');
+    print('The end.');
+}
+main();
+</script>
+
+</body>
+</html>

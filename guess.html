@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<meta charset="utf-8"/>
+
+<textarea id="textOutput" readonly></textarea><br />
+<input id="textInput" readonly />
+
+<script src="bext.js"></script>
+<link rel="stylesheet" href="bext.css">
+
+
+<script>
+async function main() {
+    print('Hello! What is your name?');
+    var name = await input(); // input() must be called with the await keyword.
+    print('Hi, ' + name + '...');
+    await sleep(1); // sleep() must be called with the await keyword.
+    var secretNumber = Math.floor(Math.random() * 100) + 1;
+
+    print('I am thinking of a number from 1 to 100.')
+    var guessesTaken = 0;
+    while (guessesTaken < 6) {
+        print('Take a guess:')
+        var guess = Number(await input());
+        guessesTaken += 1;
+
+        if (guess < secretNumber) {
+            print('That guess is too low.');
+        }
+        if (guess > secretNumber) {
+            print('That guess is too high.');
+        }
+        if (guess == secretNumber) {
+            break;
+        }
+    }
+
+    if (guess == secretNumber) {
+        print('Hooray! You guessed my number!');
+    }
+    else {
+        print('Nope! My secret number was ' + secretNumber);
+    }
+}
+main();
+</script>
+
+</body>
+</html>
