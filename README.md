@@ -49,6 +49,8 @@ Note that you must always insert the `await` keyword before the call to `sleep()
 
 The `clear()` function erases all the text in the "screen" text field.
 
+# Examples
+
 See the demo.html and guess.html files in this repo for example usage.
 
 You can also check out this [live demo](https://inventwithpython.com/files/guess.html).
