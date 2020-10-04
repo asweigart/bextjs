@@ -11,36 +11,48 @@
 
 
 <script>
+async function askForGuess() {
+    while (true) {
+        var guess = await input();  // Enter the guess.
+        guess = Number(guess);
+
+        if (guess >= 1 && guess <= 100) {
+            return guess;
+        }
+        print("Please enter a number between 1 and 100.");
+    }
+}
+
 async function main() {
-    print('Hello! What is your name?');
-    var name = await input(); // input() must be called with the await keyword.
-    print('Hi, ' + name + '...');
-    await sleep(1); // sleep() must be called with the await keyword.
-    var secretNumber = Math.floor(Math.random() * 100) + 1;
+    print("Guess the Number, by Al Sweigart al@inventwithpython.com");
+    print();
+    var secretNumber = Math.floor(Math.random() * 100) + 1;  // Select a random number.
+    print("I am thinking of a number between 1 and 100.");
 
-    print('I am thinking of a number from 1 to 100.')
-    var guessesTaken = 0;
-    while (guessesTaken < 6) {
-        print('Take a guess:')
-        var guess = Number(await input());
-        guessesTaken += 1;
+    for (var i = 0; i < 10; i++) {  // Give the player 10 guesses.
+        print("You have ", 10 - i, " guesses left. Take a guess.");
 
+        var guess = await askForGuess();
+
+        if (guess == secretNumber) {
+            break;  // Break out of the for loop if the guess is correct.
+        }
+
+        // Offer a hint:
         if (guess < secretNumber) {
-            print('That guess is too low.');
+            print("Your guess is too low.");
         }
         if (guess > secretNumber) {
-            print('That guess is too high.');
-        }
-        if (guess == secretNumber) {
-            break;
+            print("Your guess is too high.");
         }
     }
 
+    // Reveal the results:
     if (guess == secretNumber) {
-        print('Hooray! You guessed my number!');
+        print("Yay! You guessed my number!");
     }
     else {
-        print('Nope! My secret number was ' + secretNumber);
+        print("Game over. The number I was thinking of was ", secretNumber);
     }
 }
 main();

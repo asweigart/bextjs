@@ -29,11 +29,11 @@ function input() {
     return new Promise((resolve) => {
         function handleKeypress(e) {
             if (e.key === "Enter") {
+                print(e.target.value);
                 resolve(e.target.value);
-                e.target.value = "";
+                e.target.value = "";  // Blank the input text field
                 textInputElem.removeEventListener('keypress', handleKeypress)
                 textInputElem.readOnly = true;
-
             }
         }
         textInputElem.addEventListener('keypress', handleKeypress)
