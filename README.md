@@ -54,3 +54,8 @@ The `clear()` function erases all the text in the "screen" text field.
 See the demo.html and guess.html files in this repo for example usage.
 
 You can also check out this [live demo](https://inventwithpython.com/files/guess.html).
+
+Support
+-------
+
+If you find this project helpful and would like to support its development, [consider donating to its creator on Patreon](https://www.patreon.com/AlSweigart).
