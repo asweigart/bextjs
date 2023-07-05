@@ -2,7 +2,7 @@ html, body {
     height: 100%;
 }
 
-#textInput, #textOutput {
+#bextInput, #bextOutput {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -10,7 +10,7 @@ html, body {
     width: 100%;
 }
 
-#textOutput {
+#bextOutput {
     height: calc(100vh - 40px);
     vertical-align:top;
 }

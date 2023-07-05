@@ -65,9 +65,9 @@ function input() {
     });
 }
 
-function sleep(delayInSeconds) {
+function sleep(delayInMilliseconds) {
     // Pause the program.
-    return new Promise(resolve => setTimeout(resolve, delayInSeconds * 1000));
+    return new Promise(resolve => setTimeout(resolve, delayInMilliseconds));
 }
 
 function clear() {
@@ -97,9 +97,12 @@ class Bext {
         this.bextOutputElem = document.getElementById(this.bextOutput);
         this.bextInputElem = document.getElementById(this.bextInput);
 
-        this.bextOutputElem.readOnly = true;
-        this.bextInputElem.readOnly = true;
-
+        if (this.bextOutputElem !== null) {
+            this.bextOutputElem.readOnly = true;
+        }
+        if (this.bextInputElem !== null) {
+            this.bextInputElem.readOnly = true; 
+        }
         this.clear();
     }
 
@@ -144,9 +147,9 @@ class Bext {
     }
 
     // TODO - Does this delay all JS code on the page?
-    sleep(delayInSeconds) {
+    sleep(delayInMilliseconds) {
         // Pause the program.
-        return new Promise(resolve => setTimeout(resolve, delayInSeconds * 1000));
+        return new Promise(resolve => setTimeout(resolve, delayInMilliseconds));
     }
 
     clear() {
