@@ -4,20 +4,20 @@ BextJS is a boring text in-browser console, written in JavaScript. There is a la
 
 To set up, create an HTML file with the following content:
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <body>
-    <meta charset="utf-8"/>
-
-    <textarea id="textOutput" readonly></textarea><br />
-    <input id="textInput" readonly />
+    <textarea id="bextOutput" readonly></textarea><br />
+    <input id="bextInput" readonly />
 
     <script src="bext.js"></script>
     <link rel="stylesheet" href="bext.css">
 
     <script>
     async function main() {
-        // Your text program goes here.
+        // input() and sleep() must be called from an async function.
+        print('Hello, what is your name?')
+        let name = await input();  // input() requries `away`
+        print('It is...');
+        await sleep(1);  // sleep() requires `await`
+        print('...GOOD to meet you, ', name);
     }
     main();
     </script>

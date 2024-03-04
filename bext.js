@@ -15,11 +15,44 @@ When calling sleep(), you must call it with await:
     await sleep(2);
 Or else it will not pause the program. Also, any function that calls input()
 must itself be called with an await or else the program won't pause.
-
-(But main doesn't have to be called with await? Also, when is async needed in the function definition?)
 */
 
 "use strict";
+
+let bextRowBufferSize = 256;  // 256 was selected arbitrarily.
+
+function _countNewlines(str) {
+    let count = 0;
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === '\n') {
+            count++;
+        }
+    }
+    return count;
+}
+
+
+function _truncateForRowBuffer(bextOutputElem, rowBufferSize) {
+    if (rowBufferSize === null) {
+        return;  // a null row buffer size means never truncate
+    }
+
+    let totalNewlines = _countNewlines(bextOutputElem.value);
+    if (totalNewlines >= bextRowBufferSize) {
+        let newlineCount = 0;
+        let cutAt = 0;
+        for (cutAt = 0; cutAt < bextOutputElem.value.length; cutAt++) {
+            if (bextOutputElem.value[cutAt] === '\n') {
+                if (newlineCount == totalNewlines - bextRowBufferSize) {
+                    break;
+                } else {
+                    newlineCount++;
+                }
+            }
+        }
+        bextOutputElem.value = bextOutputElem.value.substring(cutAt + 1);
+    }
+}
 
 
 // These are the global print(), input(), clear(), and sleep() functions:
@@ -37,6 +70,7 @@ function print() {
     }
 
     bextOutputElem.value = bextOutputElem.value + args.join("") + newline;
+    _truncateForRowBuffer(bextOutputElem, bextRowBufferSize);
     bextOutputElem.scrollTop = bextOutputElem.scrollHeight; // Scroll to the bottom of the text field.
 }
 
@@ -79,6 +113,41 @@ function clear() {
     document.getElementById("bextOutput").value = "";
 }
 
+/*
+function _getWidthInColumns(textarea) {
+    // Get the font size of the textarea
+    var computedStyle = window.getComputedStyle(textarea);
+    var fontSize = parseFloat(computedStyle.fontSize);
+
+    // Create a temporary span element to calculate the width
+    var tempSpan = document.createElement('span');
+    tempSpan.style.visibility = 'hidden';
+    tempSpan.style.whiteSpace = 'pre'; // Preserve spaces
+    tempSpan.textContent = textarea.value || textarea.placeholder || '';
+
+    // Append the span to the document body to get accurate width calculations
+    document.body.appendChild(tempSpan);
+    var widthInPixels = tempSpan.offsetWidth;
+    document.body.removeChild(tempSpan);
+
+    // Convert the width from pixels to character columns
+    var widthInColumns = Math.floor(widthInPixels / fontSize);
+
+    return widthInColumns;
+}
+
+function bextWidth() {
+    // Return the width of the bextOutput text field in character columns:
+    const bextOutputElem = document.getElementById("bextOutput");
+
+    if (bextOutputElem === null) {
+        throw "print() has been called but bextOutput element does not exist.";
+    }
+    
+    return _getWidthInColumns(bextOutputElem);
+}
+*/
+
 // Clear the output and input text fields:
 if (document.getElementById("bextOutput") !== null) {
     clear();
@@ -90,9 +159,10 @@ if (document.getElementById("bextOutput") !== null) {
 
 
 class Bext {
-    constructor(bextOutput=null, bextInput=null) {
+    constructor(bextOutput=null, bextInput=null, bextRowBufferSize=256) {
         this.bextOutput = bextOutput;
         this.bextInput = bextInput;
+        this.bextRowBufferSize = bextRowBufferSize;
 
         this.bextOutputElem = document.getElementById(this.bextOutput);
         this.bextInputElem = document.getElementById(this.bextInput);
@@ -119,6 +189,7 @@ class Bext {
         }
 
         this.bextOutputElem.value = this.bextOutputElem.value + args.join("") + newline;
+        _truncateForRowBuffer(this.bextOutputElem, this.bextRowBufferSize);
         this.bextOutputElem.scrollTop = this.bextOutputElem.scrollHeight; // Scroll to the bottom of the text field.
     }
 
@@ -160,6 +231,15 @@ class Bext {
         this.bextOutputElem.value = "";
     }
 
+/*
+    bextWidth() {
+        if (this.bextOutputElem === null) {
+            throw "print() has been called but bextOutput element does not exist.";
+        }
+        
+        return _getWidthInColumns(this.bextOutputElem);
+    }
+*/
 }
 
 

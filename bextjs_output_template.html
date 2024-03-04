@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>BextJS Output Template</title>
+</head>
+<body>
+
+<textarea id="bextOutput" readonly></textarea><br />
+<!--<input id="bextInput" readonly />-->
+<button type="button" onclick="running = !running;">&#x23FB; Off</button>
+
+
+<script src="https://raw.githubusercontent.com/asweigart/bextjs/master/bext.js"></script>
+<link rel="stylesheet" href="https://raw.githubusercontent.com/asweigart/bextjs/master/bext.css">
+
+
+<script>
+
+bextRowBuffer = 256;  // Change this to whatever size you want, or -1 for infinite buffer.
+const DELAY = 60;
+let width = 220;
+let running = true;
+
+async function main() {
+    while (running) {
+        // A simple set of print() calls in a loop:
+        print('Hello, world!');
+        await sleep(DELAY);
+        print('  Hello, world!');
+        await sleep(DELAY);
+        print('    Hello, world!');
+        await sleep(DELAY);
+    }
+}
+
+main();
+</script>
+
+</body>
+</html>

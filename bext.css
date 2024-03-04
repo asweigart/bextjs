@@ -13,4 +13,5 @@ html, body {
 #bextOutput {
     height: calc(100vh - 40px);
     vertical-align:top;
+    white-space: pre;
 }
