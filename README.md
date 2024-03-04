@@ -51,9 +51,15 @@ The `clear()` function erases all the text in the "screen" text field.
 
 # Examples
 
-See the demo.html and guess.html files in this repo for example usage.
+See the demos in this repo or online:
 
-You can also check out this [live demo](https://inventwithpython.com/files/guess.html).
+* [Cho Han Game](https://inventwithpython.com/bextjsdemos/chohan.html)
+* [Guess the Number](https://inventwithpython.com/bextjsdemos/guess.html)
+* [Cube Wall Animation](https://inventwithpython.com/bextjsdemos/cubewall.html)
+* [Zigzag Animation](https://inventwithpython.com/bextjsdemos/zigzag.html)
+
+BextJS is used for all the demos at [The Scroll Art Museum](https://scrollart.org).
+
 
 Support
 -------
