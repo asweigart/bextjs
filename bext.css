@@ -1,6 +1,8 @@
+/*
 html, body {
     height: 100%;
 }
+*/
 
 #bextInput, #bextOutput {
     -webkit-box-sizing: border-box;
