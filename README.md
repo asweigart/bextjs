@@ -1,5 +1,7 @@
 # BextJS
 
+THIS MODULE IS OBSOLETE. It has been renamed and updated to Textarea_Terminal_JS which you can find at https://github.com/asweigart/textarea_terminal_js This repo will not be updated and only remains as a historical archive. Please use Textarea_Terminal_JS instead.
+
 BextJS is a boring text in-browser console, written in JavaScript. There is a large text field representing the terminal "screen" and a text field for user input.
 
 To set up, create an HTML file with the following content:

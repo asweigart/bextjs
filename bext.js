@@ -3,8 +3,9 @@ BextJS by Al Sweigart al@inventwithpython.com
 https://github.com/asweigart/bextjs
 */
 
-// TODO - create BextJS objects so pages can have multiple terminals.
 // TODO - add color? add goto()? Change size? Print emojis?
+
+
 /*
 When calling input(), you must call it with await:
     await input();
